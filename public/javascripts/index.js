@@ -38,10 +38,18 @@
     //
     // Add Text
     //
-
-    $('.js-utilisation-title').html(monthDelta + '%')
+    if (monthDelta > 0) $('.js-utilisation-title').html('+' + monthDelta.toString() + '%')
+    else if (monthDelta < 0) $('.js-utilisation-title').html( monthDelta.toString() + '%')
+    else $('.js-utilisation-title').html('0%')
     $('.js-last-month').html(lastMonth + '%')
     $('.js-this-month').html(thisMonth + '%')
+
+
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+      , lastMonthTitle = months[(new Date()).getMonth()-1]
+      , twoMonthTitle = months[new Date().getMonth()-2]
+    $('.js-last-month-title').html(lastMonthTitle)
+    $('.js-two-month-title').html(twoMonthTitle)
 
   }
 

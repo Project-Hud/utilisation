@@ -2,12 +2,10 @@ html{height:100%}
 body{font:14px "Lucida Grande",Helvetica,Arial,sans-serif;background-color:#000;color:#fff;text-align:center;height:100%}
 a{color:#00b7ff}
 .utilisation-container{width:100%;height:100%;background-color:#000;margin:auto;position:relative;overflow:hidden}
-.utilisation{width:2000px;height:2000px;background-color:#000;position:absolute;top:50%;left:50%;transform-origin:50% 0;margin-left:-1000px;transition:all 1s ease}
+.utilisation{width:2000px;height:2000px;background-color:#000;position:absolute;top:50%;left:50%;-webkit-transform-origin:50% 0;-ms-transform-origin:50% 0;transform-origin:50% 0;margin-left:-1000px;-webkit-transition:all 1s ease;transition:all 1s ease}
 .utilisation-change{position:relative}
-h1{font-size:150px;margin:0}
-h2{font-size:50px;margin:0 0 40px}
-p{margin:0 0 10px;text-transform:uppercase}
-p + p{margin-bottom:40px}
-button{background-color:#000;border:0;color:#fff;font-size:16px;border-radius:3px;padding:5px 10px;transition:all .2s ease;cursor:pointer;}
-button:hover{color:#000;background-color:#fff;transition:all .5s ease}
-button:focus{outline:0}
+h1{font-size:100px;margin:18px 0 0 0}
+h2{font-size:30px;margin:0;text-transform:uppercase}
+p.dates-listed{margin:5px 0 10px;font-size:20px;text-transform:uppercase;letter-spacing:9px}
+p.last-month{margin-top:70px;font-size:25px;font-weight:normal;opacity:.7}
+p.last-month strong{font-weight:bold;font-size:30px}
