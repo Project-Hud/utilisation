@@ -60,13 +60,11 @@
   //
   // Initialise for the first time
   //
-  var lastMonth = 20
-    , thisMonth = 80
-    , monthDelta = thisMonth - lastMonth
 
-  // var lastMonth = Math.round($('.js-utilisation').data('first-month'))
-  //   , thisMonth = Math.round($('.js-utilisation').data('last-month'))
-  //   , monthDelta = thisMonth - lastMonth
+
+  var lastMonth = Math.round($('.js-utilisation').data('first-month'))
+    , thisMonth = Math.round($('.js-utilisation').data('last-month'))
+    , monthDelta = thisMonth - lastMonth
 
   calculateUtilisation(thisMonth, lastMonth, monthDelta)
 
