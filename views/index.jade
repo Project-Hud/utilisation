@@ -1,8 +1,18 @@
 extends layout
 
 block content
-  h1 Utilisation
-  p Not yet built
-  .graph(data-first-month=months[0], data-last-month=months[1])
 
+  //- .graph(data-first-month=months[0], data-last-month=months[1])
+
+  .utilisation-container
+    .utilisation.js-utilisation(data-first-month=months[0], data-last-month=months[1])
+    .utilisation-change.js-utilisation-change
+      h1.js-utilisation-title
+      h2 CHANGE
+      p Last Month:
+        span.js-last-month
+      p This Month:
+        span.js-this-month
+      //- button.js-randomise RANDOMISE
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
   script(src='/javascripts/index.js')
