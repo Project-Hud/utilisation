@@ -1,76 +1,86 @@
 (function () {
 
-  function calculateUtilisation(lastMonth, thisMonth) {
+  function calculateUtilisation(thisMonth, lastMonth, monthDelta) {
 
-  var monthDelta = thisMonth - lastMonth
-    , width = $('.utilisation-container').width()
-    , height = $('.utilisation-container').height()
+    var width = $('.utilisation-container').width()
+      , height = $('.utilisation-container').height()
+
+    //
+    // Calculate the top offset
+    //
+
+    var monthAverage = (lastMonth + thisMonth) / 2
+    var topOffset = 100 - monthAverage
+
+
+    var rotationDegrees = calculateRotation(monthDelta, width, height)
+
+    //
+    // Apply colour based on month delta
+    //
+
+    var color
+      , tolerance = 10
+    if (monthDelta >= -tolerance && monthDelta <= tolerance) color = '#1E8BF0'
+    else if (monthDelta > tolerance) color = '#bada55'
+    else if (monthDelta < -tolerance)color = '#F0591E'
+
+    //
+    // Apply values to the `.utilisation` element
+    //
+
+    $('.js-utilisation').css(
+      { "transform": "rotate(" + rotationDegrees + "deg)"
+      , "top": topOffset + "%"
+      , "background-color": color
+    })
+
+    //
+    // Add Text
+    //
+
+    $('.js-utilisation-title').html(monthDelta + '%')
+    $('.js-last-month').html(lastMonth + '%')
+    $('.js-this-month').html(thisMonth + '%')
+
+  }
+
+  function calculateRotation(monthDelta, width, height) {
+    //
+    // Calculate the rotation needed
+    //
+
+    var percentageHeight = (-monthDelta / 100) * height
+      , rotationRadians = Math.atan2(percentageHeight, width)
+      , rotationDegrees = rotationRadians * (180 / Math.PI)
+
+    return rotationDegrees
+  }
 
   //
-  // Calculate the top offset
+  // Initialise for the first time
   //
+  var lastMonth = 20
+    , thisMonth = 80
+    , monthDelta = thisMonth - lastMonth
 
-  var monthAverage = (lastMonth + thisMonth) / 2
-  var topOffset = 100 - monthAverage
+  // var lastMonth = Math.round($('.js-utilisation').data('first-month'))
+  //   , thisMonth = Math.round($('.js-utilisation').data('last-month'))
+  //   , monthDelta = thisMonth - lastMonth
 
-  //
-  // Calculate the rotation needed
-  //
+  calculateUtilisation(thisMonth, lastMonth, monthDelta)
 
-  var percentageHeight = (-monthDelta / 100) * height
-    , rotationRadians = Math.atan2(percentageHeight, width)
-    , rotationDegrees = rotationRadians * (180 / Math.PI)
+  $(window).on('resize', function(){
+    var newWidth = $('.utilisation-container').width()
+      , newHeight = $('.utilisation-container').height()
 
+    var newRotation = calculateRotation(monthDelta, newWidth, newHeight)
+      $('.js-utilisation').css(
+      { "transform": "rotate(" + newRotation + "deg)"
+    })
 
-  //
-  // Apply colour based on month delta
-  //
-
-  var color
-    , tolerance = 10
-  if (monthDelta >= -tolerance && monthDelta <= tolerance) color = '#1E8BF0'
-  else if (monthDelta > tolerance) color = '#bada55'
-  else if (monthDelta < -tolerance)color = '#F0591E'
-
-  //
-  // Apply values to the `.utilisation` element
-  //
-
-  $('.js-utilisation').css(
-    { "transform": "rotate(" + rotationDegrees + "deg)"
-    , "top": topOffset + "%"
-    , "background-color": color
   })
 
-  //
-  // Add Text
-  //
-
-  $('.js-utilisation-title').html(monthDelta + '%')
-  $('.js-last-month').html(lastMonth + '%')
-  $('.js-this-month').html(thisMonth + '%')
-
-}
-
-//
-// Initialise for the first time
-//
-
-var first = $('.js-utilisation').attr('data-first-month')
-  , last = $('.js-utilisation').attr('data-last-month')
-
-calculateUtilisation(Math.round(first), Math.round(last))
-
-//
-// Fake new data on button click
-//
-
-// $('.js-randomise').on('click', function(){
-//   var fakeLastMonth = Math.floor(Math.random() * 100)
-//     , fakeThisMonth = Math.floor(Math.random() * 100)
-
-//   calculateUtilisation(fakeLastMonth, fakeThisMonth)
-// })
 
 //
 // TODO
