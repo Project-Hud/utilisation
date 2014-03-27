@@ -5,17 +5,14 @@ block content
   .utilisation-container
     .utilisation.js-utilisation(data-first-month=months[0], data-last-month=months[1])
     .utilisation-change.js-utilisation-change
-      h1.js-utilisation-title
-      h2 Utilisation
-      p.dates-listed
+      h1.js-this-month
+      h2
         span.js-two-month-title
-        |  - 
-        span.js-last-month-title
+        |  utilisation
 
       p.last-month
-        span
-          strong.js-this-month
-          |  last month
+        span.js-utilisation-title.value
+        |  from last month
 
   script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
   script(src='/javascripts/index.js')
