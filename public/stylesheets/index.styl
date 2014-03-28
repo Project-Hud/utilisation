@@ -1,59 +1,18 @@
-html
-  height 100%
+//
+// FOUNDATIONS
+// Base HTML and generic site-wide elements
+//
 
-body
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
-  background-color black
-  color white
-  text-align center
-  height 100%
+@import 'foundations/normalize'
+@import 'foundations/base'
 
-a
-  color #00B7FF
+//
+// LAYOUT
+//
 
-.utilisation-container
-  width 100%
-  height 100%
-  background-color black
-  margin auto
-  position relative
-  overflow hidden
+@import 'layout/widget'
 
-.utilisation
-  width 2000px
-  height 2000px
-  background-color #000
-  position absolute
-  top 50%
-  left 50%
-  transform-origin 50% 0
-  margin-left -1000px
-  transition all 1s ease
-
-.utilisation-change
-  position relative
-
-h1
-  font-size 100px
-  margin 18px 0 0 0
-
-h2
-  font-size 30px
-  margin 0
-  text-transform uppercase
-
-p.dates-listed
-  margin 5px 0 10px
-  font-size 20px
-  text-transform uppercase
-  letter-spacing 9px
-
-p.last-month
-  margin-top 70px
-  font-size 25px
-  font-weight normal
-  opacity 0.7
-
-p.last-month strong
-  font-weight bold
-  font-size 30px
+//
+// COMPONENTS
+//
+@import 'components/utilisation'
