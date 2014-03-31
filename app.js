@@ -23,22 +23,33 @@ widget.get('/', function (req, res) {
       return res.send(500, { error: err })
     }
 
-    var prevMonths =
+    var monthTitle
+      , prevMonths =
         [ moment().subtract('months', 2).format(dateFormat)
         , moment().subtract('months', 1).format(dateFormat)
         ]
 
     if (typeof rows['1'] !== 'undefined' && typeof rows['2'] !== 'undefined') {
+
       _.each(rows['1'], function (month, key) {
-        if (prevMonths[0] === month) prevMonths[0] = rows['2'][key] || -1
-        else if (prevMonths[1] === month) prevMonths[1] = rows['2'][key] || -1
+        if (prevMonths[0] === month) {
+          prevMonths[0] = rows['2'][key] || -1
+        }
+        else if (prevMonths[1] === month) {
+          monthTitle = month.substr(0,3)
+          prevMonths[1] = rows['2'][key] || -1
+        }
       })
 
-      res.render('index', { title: 'Utilisation', months: prevMonths })
+      res.render('index', { title: 'Utilisation', months: prevMonths, monthTitle: monthTitle })
+
     } else {
+
       console.error('Unsupported spreadsheet layout')
       return res.send(500, { error: 'Unsupported spreadsheet layout' })
+
     }
+
   })
 
 })
